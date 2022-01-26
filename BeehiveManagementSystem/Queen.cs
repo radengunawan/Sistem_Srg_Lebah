@@ -9,8 +9,8 @@ namespace BeehiveManagementSystem
         public const float EGGS_PER_SHIFT = 0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
 
-        private Bee[] workers = new Bee[0];
-        //private List<Bee> workers = new List<Bee>();
+        //private Bee[] workers = new Bee[0];
+        private List<Bee> workers = new List<Bee>();
         private float eggs = 0;
         private float unassignedWorkers = 3;
 
@@ -29,9 +29,9 @@ namespace BeehiveManagementSystem
             if (this.unassignedWorkers >= 1)
             {
                 this.unassignedWorkers--;
-                Array.Resize(ref workers, workers.Length + 1);
-                //this.workers.Add(worker);
-                workers[workers.Length - 1] = worker;
+                //Array.Resize(ref workers, workers.Length + 1);
+                this.workers.Add(worker);
+                //workers[workers.Length - 1] = worker;
             }
         }
 
@@ -40,8 +40,8 @@ namespace BeehiveManagementSystem
             StatusReport = $"Vault report:\n{HoneyVault.StatusReport}\n" +
             $"\nEgg count: {eggs:0.0}\nUnassigned workers: {unassignedWorkers:0.0}\n" +
             $"{WorkerStatus("Nectar Collector")}\n{WorkerStatus("Honey Manufacturer")}" +
-            $"\n{WorkerStatus("Egg Care")}\nTOTAL WORKERS: {workers.Length}";
-           //$"\n{WorkerStatus("Egg Care")}\nTOTAL WORKERS: {workers.Count}";
+           // $"\n{WorkerStatus("Egg Care")}\nTOTAL WORKERS: {workers.Length}";
+           $"\n{WorkerStatus("Egg Care")}\nTOTAL WORKERS: {workers.Count}";
         }
 
         public void CareForEggs(float eggsToConvert)
